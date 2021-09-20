@@ -43,23 +43,6 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-    - name: Clone wait-for-port
-      run: |
-        git clone https://github.com/bitnami/wait-for-port.git
-    
-        
-    - name: Build
-      run: |
-        cd wait-for-port
-        go mod download
-        go build -v ./...
-        ls
-
-    - name: Test
-      run: |
-        cd wait-for-port
-        go test -v ./...
-
     - name: Build and push
       id: docker_build
       uses: docker/build-push-action@v2

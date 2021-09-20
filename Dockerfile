@@ -1,6 +1,14 @@
-FROM alpine:latest as alpine
+FROM golang:alpine as alpine
 
-RUN apk add -U --no-cache ca-certificates
+RUN apk add -U --no-cache ca-certificates \ 
+    git
+
+RUN git clone https://github.com/bitnami/wait-for-port.git
+
+WORKDIR /go/wait-for-port
+RUN go mod tidy
+RUN go build .
+
 RUN addgroup -S mappedgroup && adduser -S mappeduser -G mappedgroup
 
 # CLI for k8s startup probe (to understand when container is ready to work)
@@ -14,7 +22,4 @@ WORKDIR /
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=alpine /etc/passwd /etc/passwd
 COPY --from=alpine /bin/grpc_health_probe /bin/grpc_health_probe
-
-COPY ./wait-for-port/wait-for-port /app/wait-for-port
- 
-ENTRYPOINT ["/app/wait-for-port"]
+COPY --from=alpine /go/wait-for-port/wait-for-port /app/wait-for-port
