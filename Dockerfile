@@ -16,5 +16,4 @@ WORKDIR /
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=alpine /etc/passwd /etc/passwd
 COPY --from=alpine /bin/grpc_health_probe /bin/grpc_health_probe
-COPY --from=alpine /app/wait-for-port /app/wait-for-port
-
+COPY --from=alpine --chown=mappeduser:mappedgroup /app/wait-for-port /app/wait-for-port
