@@ -26,7 +26,8 @@ jobs:
       run: |
         cd wait-for-port
         go mod download
-        go build -v main.go
+        go build -v ./...
+        ls
 
     - name: Test
       run: |
