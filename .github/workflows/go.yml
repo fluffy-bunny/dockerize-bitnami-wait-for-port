@@ -19,7 +19,7 @@ jobs:
         go-version: 1.17
     - name: Clone wait-for-port
       run: |
-        git clone github.com/bitnami/wait-for-port
+        git clone https://github.com/bitnami/wait-for-port.git
     
         
     - name: Build
