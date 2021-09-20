@@ -54,3 +54,4 @@ jobs:
       run: |
         cd wait-for-port
         go test -v ./...
+
