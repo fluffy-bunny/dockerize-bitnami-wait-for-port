@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_NAME: github.com/fluffy-bunny/waitforport-scratch
+  IMAGE_NAME: ghstahl/fluffy-bunny/waitforport-scratch
   BASE_VERSION: '0.1.0'
 
 jobs:
