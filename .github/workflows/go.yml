@@ -3,6 +3,11 @@ name: Go
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'README.md'
+      - 'example/README.md'
+      - 'docs/**'
+      - '.github/dependabot.yml'
   pull_request:
     branches: [ main ]
 
